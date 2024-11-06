@@ -4,12 +4,18 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var expressSession = require('express-session');
-
+require('dotenv').config();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const passport = require('passport');
 
 var app = express();
+
+// MongoDB Connection Established
+mongoose.connect(process.env.MONGODB_URI,
+{ useNewUrlParser: true, useUnifiedTopology: true, }) 
+.then(() => console.log('MongoDB connected...')) 
+.catch(err => console.error(err));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
