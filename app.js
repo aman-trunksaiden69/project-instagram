@@ -8,6 +8,7 @@ require('dotenv').config();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const passport = require('passport');
+const mongoose = require('mongoose');
 
 var app = express();
 
@@ -24,7 +25,7 @@ app.set('view engine', 'ejs');
 app.use(expressSession({
   resave: false,
   saveUninitialized: false,
-  secret: "heyheyehhdd"
+  secret: process.env.SESSION_SECRET
 }));
 app.use(passport.initialize());
 app.use(passport.session());
