@@ -1,11 +1,7 @@
 const mongoose = require('mongoose');
 const plm = require("passport-local-mongoose");
 
-mongoose.connect(process.env.MONGODB_URI, 
-{ useNewUrlParser: true, 
-  useUnifiedTopology: true
-}
-);
+mongoose.connect(process.env.MONGODB_URI);
 
 const userSchema = mongoose.Schema({
   username: String,
@@ -14,7 +10,7 @@ const userSchema = mongoose.Schema({
   password: String,
   picture: {
     type: String,
-    default: "def.png"
+    default: "peopleimg.jpg"
   },
   contact: String,
   bio: String,

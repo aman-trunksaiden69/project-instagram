@@ -67,6 +67,8 @@ router.get("/profile", isLoggedIn, async function (req, res) {
     .populate("saved");
   console.log(user);
 
+  user.picture = user.picture || 'peopleimg.jpg'
+
   res.render("profile", { footer: true, user });
 });
 
@@ -81,6 +83,7 @@ router.get("/profile/:user", isLoggedIn, async function (req, res) {
     .findOne({ username: req.params.user })
     .populate("posts");
 
+  userprofile.picture = userprofile.picture || 'peopleimg.jpg';  
   res.render("userprofile", { footer: true, userprofile, user });
 });
 
