@@ -4,6 +4,11 @@
   background-color: crimson;
   cursor: pointer;
 }
+
+#more {
+  display: none;
+}
+
 </style>
   <div class="w-full min-h-screen bg-black text-white py-5">
       <div class="nav flex justify-between items-center px-4">
@@ -34,13 +39,21 @@
       </div>
       <div class="dets px-6 mt-5">
         <h3 class="text-lg text-white mb-1"><%= user.name %></h3>
-        <p class="text-sm tracking-tight text-white opacity-95 w-[100%]"><%= user.bio ?? "You have not set anything yet(click edit profile to set)" %></p>
+        <p class="text-sm tracking-tight text-white opacity-95 w-[100%]" id="bio">
+          <%= user.bio ?? "You have not set anything yet (click edit profile to set)" %>
+          <% if (user.bio && user.bio.length > 100) { %> <!-- Adjust the length as needed -->
+            <span id="dots">...</span>
+            <span id="more"><%= user.bio.substring(100) %></span>
+            <a href="javascript:void(0);" id="moreBtn" class="text-blue-500"> more</a>
+          <% } %>
+        </p>
       </div>
+      
 
-      <div class="p-2 mt-3 flex items-center justify-center gap-2 font-semibold flex-container">
-        <a class="edy p-5 bg-zinc-600 text-md rounded-md" href="/edit">Edit Profile</a>
-        <a class="edy p-5 bg-zinc-600 text-md rounded-md" href="/edit">Share Profile</a>
-        <a class="edy p-5 bg-zinc-600 text-md rounded-md" href="/edit"><i class="ri-user-add-line"></i></a>
+      <div class="p-1 mt-3 flex items-center justify-center gap-2 font-semibold">
+        <a class="edy p-2 py-1 bg-zinc-600 text-md rounded-md" href="/edit">Edit Profile</a>
+        <a class="edy p-2 py-1 bg-zinc-600 text-md rounded-md" href="/edit">Share Profile</a>
+        <a class="edy p-2 py-1 bg-zinc-600 text-md rounded-md" href="/edit"><i class="ri-user-add-line"></i></a>
       </div>
 
       <div class="mt-4 flex text-zinc-300 items-center justify-between gap-2 font-light">
@@ -69,3 +82,25 @@
       </div>
   </div>
 <% include ./partials/footer.ejs %>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+  var moreBtn = document.getElementById("moreBtn");
+  var dots = document.getElementById("dots");
+  var more = document.getElementById("more");
+
+  if (moreBtn) {
+    moreBtn.addEventListener("click", function() {
+      if (dots.style.display === "none") {
+        dots.style.display = "inline";
+        more.style.display = "none";
+        moreBtn.innerHTML = " more";
+      } else {
+        dots.style.display = "none";
+        more.style.display = "inline";
+        moreBtn.innerHTML = " less";
+      }
+    });
+  }
+});
+
+</script>
