@@ -143,6 +143,12 @@ router.get("/edit", isLoggedIn, async function (req, res) {
   res.render("edit", { footer: true, user });
 });
 
+router.get("/share", isLoggedIn, async function (req, res) {
+  const user = await userModel.findOne({ username: req.session.passport.user });
+  res.render("share", { footer: false, user });
+});
+
+
 router.get("/upload", isLoggedIn, async function (req, res) {
   let user = await userModel.findOne({ username: req.session.passport.user });
   res.render("upload", { footer: true, user });
