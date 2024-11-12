@@ -19,11 +19,34 @@
   <input id="file" type="file" name="image">
 </form>
   
-<div class="w-full min-h-screen bg-gradient-to-b from-[#DD1180] to-[#FF8C3A] text-white py-5">
+<div class="relative w-full min-h-screen bg-gradient-to-b from-[#DD1180] to-[#FF8C3A] text-white py-5">
     <div class="flex justify-between items-center p-5">
         <a class="text-2xl" href="/feed"><i class="ri-close-line"></i></a>
       <h2 class="leading-none text-sm bg-[#ffffff21] px-5 py-2 rounded-full border-[1px] font-semibold border-white">COLOR</h2>
       <a class="text-2xl" href="/feed"><i class="ri-qr-scan-2-line"></i></a>
+    </div>
+
+    <div class="flex flex-col items-center justify-center gap-8 h-[35vh] w-[75%] bg-white absolute left-[12%] top-[20%] rounded-3xl">
+         <div class="w-[43vw] h-[43vw] rounded-full flex items-center justify-center border-[2px] border-[#000]">
+            <div class="w-[40vw] h-[40vw] bg-sky-100 rounded-full overflow-hidden">
+                <img class="w-full h-full object-cover" src="<%= user.picture ? `/images/uploads/${user.picture}` : '/images/peopleimg.jpg' %>?v=<%= new Date().getTime() %>" alt="">
+            </div> 
+         </div>
+        <h3 class="text-2xl text-black"><i class="ri-at-line"></i><%= user.username %></h3>
+    </div>
+    <div class="flex items-center justify-center gap-9 h-[15vh] w-[75%] bg-white absolute left-[12%] top-[57%] rounded-3xl">
+        <div class="w-[15vw] h-[15vw] rounded-full border-[1px] border-zinc-700 text-black flex items-center justify-center text-2xl">
+            <i class="ri-share-line"></i>
+        </div>
+
+        <div class="w-[15vw] h-[15vw] rounded-full border-[1px] border-zinc-700 text-black flex items-center justify-center text-2xl">
+            <i class="ri-links-line"></i>
+        </div>
+
+        <div class="w-[15vw] h-[15vw] rounded-full border-[1px] border-zinc-700 text-black flex items-center justify-center text-2xl">
+            <i class="ri-download-line"></i>
+        </div>
+       
     </div>
 </div>
 <% include ./partials/footer.ejs %>
