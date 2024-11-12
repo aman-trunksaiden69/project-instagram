@@ -29,8 +29,13 @@
       <div class="dets px-6 mt-5">
         <h3 class="text-lg text-white mb-1"><%= userprofile.name %></h3>
         <p class="text-sm tracking-tight text-white opacity-95 w-[100%]">
-          <% let userbio = userprofile.bio ? userprofile.bio : "You have not set anything yet (click edit profile to set)"; %>
-          <%= userbio %>
+          <% if (user._id === userprofile._id) { %>
+            <% let userbio = userprofile.bio ? userprofile.bio : "You have not set anything yet, (click edit profile to set)"; %>
+            <%= userbio %>
+          <% } else { %>
+            <% let userbio = userprofile.bio ? userprofile.bio : "The user has not set any bio yet"; %>
+            <%= userbio %>
+          <% } %>
         </p>
       </div>
       <div class="p-2 mt-5 flex justify-center gap-2">
