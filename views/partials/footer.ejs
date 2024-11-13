@@ -7,38 +7,8 @@
           <div class="w-8 h-8 bg-sky-100 rounded-full overflow-hidden">
             <img class="w-full h-full object-cover" src="<%= user.picture ? `/images/uploads/${user.picture}` : '/images/default-profile.png' %>?v=<%= new Date().getTime() %>" alt="">
           </div>
-          
         </a>
       </div>
 <% } %>
-<script>
-  document.getElementById('scanIcon').addEventListener('click', function() { 
-    const html5QrCode = new Html5Qrcode("reader");
-
-    html5QrCode.start(
-      { facingMode: "environment" }, // Prefer the back camera
-      {
-        fps: 10,    // Optional, frames per second for qr code scanning
-        qrbox: 250  // Optional, if you want bounded box UI
-      },
-      qrCodeMessage => { 
-        alert(`Barcode scanned: ${qrCodeMessage}`);
-        html5QrCode.stop().then(() => { 
-          // QR Code scanning is stopped.
-        }).catch((err) => {
-          console.error(`Stop failed, handle it: ${err}`);
-        });
-      },
-      errorMessage => {
-        console.log(`QR error = ${errorMessage}`);
-      }
-    ).catch(err => { 
-      console.error(`Unable to start scanning, error: ${err}`);
-    });
-
-    // Display the reader div
-    document.getElementById('reader').style.display = 'block';
-  });
-</script>
 </body>
 </html>
