@@ -45,10 +45,6 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
-app.get('/', (req, res) => {
-  res.send('Welcome to Instagram Clone');
-});
-
 
 
 // error handler
