@@ -44,6 +44,9 @@ app.use('/users', usersRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
+app.get('*', (req, res) => {
+  res.render("error"); // error.ejs bana le
+})
 
 // error handler
 app.use(function(err, req, res, next) {
