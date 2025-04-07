@@ -6,6 +6,7 @@ const storySchema = mongoose.Schema({
     ref: "user"
   },
   story: String,
+  caption: String,
   date: {
     type: Date,
     default: Date.now
