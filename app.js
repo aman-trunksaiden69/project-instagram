@@ -8,6 +8,7 @@ require('dotenv').config();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const passport = require('passport');
+const fs = require('fs');
 const mongoose = require('mongoose');
 
 var app = express();
@@ -46,6 +47,12 @@ app.use(function(req, res, next) {
 });
 
 
+app.use(function(err, req, res, next) {
+  // Log error details safely in production
+  if (process.env.NODE_ENV === 'production') {
+    console.error('Error:', err.message); // Logs to console
+    fs.appendFileSync('error.log', `${new Date()} - ${err.message}\n`); // Logs to file
+  }
 
 // error handler
 app.use(function(err, req, res, next) {
