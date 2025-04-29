@@ -253,6 +253,7 @@ router.get("/logout", function (req, res) {
   });
 });
 
+//middelware
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
